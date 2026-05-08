@@ -36,6 +36,33 @@ An automated tool that leverages **Generative AI** and **Vector Databases** to t
 
 ## 🔧 Installation & Setup
 
+## Getting Started
+
 1. **Clone the Repository:**
+
 2. **Install Dependencies:**
-    pip install -r requirements.txt
+
+```bash
+pip install -r requirements.txt
+```
+
+3. **Get Groq API Key:**
+
+To get started, first create an API key from:  
+https://console.groq.com/keys
+
+4. **Configure Environment Variables:**
+
+Create an `.env` file inside the `app/` directory and add:
+
+```env
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+Update the value of `GROQ_API_KEY` with the API key you generated from Groq.
+
+5. **Run the Streamlit App:**
+
+```bash
+streamlit run app/main.py
+```
