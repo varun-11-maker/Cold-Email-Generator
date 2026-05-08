@@ -36,8 +36,6 @@ An automated tool that leverages **Generative AI** and **Vector Databases** to t
 
 ## 🔧 Installation & Setup
 
-## Getting Started
-
 1. **Clone the Repository:**
 
 2. **Install Dependencies:**
