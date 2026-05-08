@@ -18,27 +18,24 @@ def create_streamlit_app(llm, portfolio, clean_text):
             portfolio.load_portfolio()
             jobs = llm.extract_jobs(data)
             
-            if jobs:
-                # To ensure we only generate a single email for the primary job found
-                main_job = jobs[0] 
+            for job in jobs:
+                # 1. Get skills and provide a default empty list if it's None
+                skills = job.get('skills', [])
                 
-                # Extract skills and convert list to string for ChromaDB query
-                skills = main_job.get('skills', [])
+                # 2. Ensure skills is a string and not None/Empty
                 if isinstance(skills, list):
                     skills_query = ", ".join(skills)
                 else:
-                    skills_query = skills
+                    skills_query = str(skills) if skills else ""
 
-                # Query the portfolio for the most relevant links
-                links = portfolio.query_links(skills_query)
+                # 3. Only query if we actually have skills to look for
+                if skills_query.strip():
+                    links = portfolio.query_links(skills_query)
+                else:
+                    links = [] # Fallback if no skills were found
                 
-                # Generate the email (Pass your own info here if desired)
-                email = llm.write_mail(main_job, links)
-                
-                st.subheader("Generated Cold Email")
+                email = llm.write_mail(job, links)
                 st.code(email, language='markdown')
-            else:
-                st.warning("No job postings could be extracted from the provided URL.")
                 
         except Exception as e:
             st.error(f"An Error Occurred: {e}")
