@@ -37,6 +37,5 @@ An automated tool that leverages **Generative AI** and **Vector Databases** to t
 ## 🔧 Installation & Setup
 
 1. **Clone the Repository:**
-   ```bash
-   git clone [https://github.com/yourusername/cold-email-generator.git](https://github.com/yourusername/cold-email-generator.git)
-   cd cold-email-generator
+2. **Install Dependencies:**
+    pip install -r requirements.txt
